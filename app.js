@@ -5,6 +5,7 @@ const debug = require ('debug')('app');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+// database sample
 const people =[{
     firstname:'Jonny',
     lastname:'Bravo',
@@ -40,11 +41,12 @@ app.get('/', (req, res)=>{
  const signupRouter =express.Router();
  const authRouter = express.Router();
  const winners = express.Router();
-
+// link to signup
  signupRouter.route('/').get((req, res) =>{
     res.render('signup');
 
  });
+ // link to page via referal link
  signupRouter.route('/:id').get((req, res) =>{
     const Id = req.params.id;
     // check if referal link is valid
@@ -60,19 +62,17 @@ app.get('/', (req, res)=>{
     console.log(Id);
  });
  
-
+// add points to the refereer and update the database
 authRouter.route('/signUp/').post((req, res)=>{
     const {firstname,lastname, email, refererid} = req.body;
     const Id = req.params.id;
    // increase the referer point
     if(Number(refererid)>=0){
-        const result = people.filter(person => person.id === Number(refererid));
-        console.log(result);
+        const result = people.filter(person => person.id === Number(refererid));   
         result[0].point=result[0].point+1
-        console.log(result);
-        console.log(people);
+     
     }
-    //add new signing to database
+    //add the new signing to database
     let newPersonId=people.length+1;
     const newPerson ={
         firstname:firstname,
@@ -86,15 +86,12 @@ authRouter.route('/signUp/').post((req, res)=>{
 
    // console.log(req.body);
     res.send(`Thank you ${lastname} for signing up your referal link \n http://localhost:4000/signup/${newPersonId}`);
-    // create user
+    
 }
 )
+// display result 
 winners.route('/').get((req, res) =>{
-   // let max=people[0].point;
-    //persons=[];
-    //people.forEach(pep=>{
-      //  if (max>pep.point)
-    //})
+// fisrt sort according to points
     function compare( a, b ) {
         if ( a.point> b.point ){
           return -1;
