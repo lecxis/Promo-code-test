@@ -1,0 +1,20 @@
+<% let id=-1%>
+<% if(locals.Id>=0) { %>
+  <% id =Id %>
+<h1><%=id %> </h1>
+<% }  else if (locals.err==-2){%>
+  <h1>Bad link bro, however you can still signup </h1>
+  <% }else {%>
+    <h1>Welcome! </h1>
+    <% }%> 
+
+
+<form name="signup" action="/auth/signUp/"+Id method="post">
+  firstname: <input name="firstname" id="firstname" style="color: black;"/><br/>
+  lastname: <input name="lastname" id="lastname" style="color: black;"/><br/>
+  email: <input name="email" id="email" style="color: black;"/><br/>
+  <input type="hidden" name="refererid" value=<%=id%> />
+
+  <input type="submit" value="SIGN UP TODAY" class="btn btn-primary btn-lg"></input>
+</form>
+

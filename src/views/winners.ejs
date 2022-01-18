@@ -1,0 +1,15 @@
+<h1>Winners</h1>
+
+<p>rank &nbsp; first name &nbsp; last name &nbsp;points </p>
+<% people.map((person, index) =>{%>
+    <div>
+        <%=index+1%>  
+        &nbsp;&nbsp;&nbsp;
+        <%=person.firstname%>
+        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%=person.lastname%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%=person.point%>
+
+</div>
+    <%  }) %>
